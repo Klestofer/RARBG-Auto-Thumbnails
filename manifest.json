@@ -1,0 +1,41 @@
+{
+  "author": "Dima PM",
+  "manifest_version": 2,
+  "name": "RARBG Auto Thumbnails",
+  "version": "0.1",
+  "description": "Shows torrent thumbnails automatically.",
+
+  "content_scripts": [
+    {
+      "matches": [ "https://rarbgmirror.xyz/torrents.php*",
+                   "https://rarbgmirror.xyz/torrent/*",
+                   "https://rarbgmirror.xyz/torrents?category=*",
+                   "https://rarbgmirror.xyz/s/*/",
+                   "https://rarbgmirror.xyz/top10",
+                   "https://rarbgmirror.xyz/top100*",
+
+                   "https://rarbgproxy.org/torrents.php*",
+                   "https://rarbgproxy.org/torrent/*",
+                   "https://rarbgproxy.org/torrents?category=*",
+                   "https://rarbgproxy.org/s/*/",
+                   "https://rarbgproxy.org/top10",
+                   "https://rarbgproxy.org/top100*",
+
+                   "https://rarbgprx.org/torrents.php*",
+                   "https://rarbgprx.org/torrent/*",
+                   "https://rarbgprx.org/torrents?category=*",
+                   "https://rarbgprx.org/s/*/",
+                   "https://rarbgprx.org/top10",
+                   "https://rarbgprx.org/top100*",
+
+                   "https://rarbgunblocked.org/torrents.php*",
+                   "https://rarbgunblocked.org/torrent/*",
+                   "https://rarbgunblocked.org/torrents?category=*",
+                   "https://rarbgunblocked.org/s/*/",
+                   "https://rarbgunblocked.org/top10",
+                   "https://rarbgunblocked.org/top100*"
+      ],
+      "js": [ "content.js" ]
+    }
+  ]
+}
