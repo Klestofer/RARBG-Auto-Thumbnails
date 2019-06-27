@@ -2,17 +2,17 @@
   "author": "Dima PM",
   "manifest_version": 2,
   "name": "RARBG Auto Thumbnails",
-  "version": "0.1",
+  "version": "0.1.1",
   "description": "Shows torrent thumbnails automatically.",
 
   "content_scripts": [
     {
-      "matches": [ "https://rarbgmirror.xyz/torrents.php*",
-                   "https://rarbgmirror.xyz/torrent/*",
-                   "https://rarbgmirror.xyz/torrents?category=*",
-                   "https://rarbgmirror.xyz/s/*/",
-                   "https://rarbgmirror.xyz/top10",
-                   "https://rarbgmirror.xyz/top100*",
+      "matches": [ "https://rarbgmirror.org/torrents.php*",
+                   "https://rarbgmirror.org/torrent/*",
+                   "https://rarbgmirror.org/torrents?category=*",
+                   "https://rarbgmirror.org/s/*/",
+                   "https://rarbgmirror.org/top10",
+                   "https://rarbgmirror.org/top100*",
 
                    "https://rarbgproxy.org/torrents.php*",
                    "https://rarbgproxy.org/torrent/*",
