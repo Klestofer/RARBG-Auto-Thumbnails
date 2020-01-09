@@ -3,5 +3,8 @@
 [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/rarbg-auto-thumbnails/)
 
 
-v0.1.1
+27.06.2019 v0.1.1
 rarbgmirror.xyz changed to rarbgmirror.org
+
+09.01.2020 v0.2.0
+added rarbgaccessed.org

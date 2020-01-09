@@ -2,7 +2,7 @@
   "author": "Dima PM",
   "manifest_version": 2,
   "name": "RARBG Auto Thumbnails",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Shows torrent thumbnails automatically.",
 
   "content_scripts": [
@@ -33,7 +33,14 @@
                    "https://rarbgunblocked.org/torrents?category=*",
                    "https://rarbgunblocked.org/s/*/",
                    "https://rarbgunblocked.org/top10",
-                   "https://rarbgunblocked.org/top100*"
+                   "https://rarbgunblocked.org/top100*",
+
+                   "https://rarbgaccessed.org/torrents.php*",
+                   "https://rarbgaccessed.org/torrent/*",
+                   "https://rarbgaccessed.org/torrents?category=*",
+                   "https://rarbgaccessed.org/s/*/",
+                   "https://rarbgaccessed.org/top10",
+                   "https://rarbgaccessed.org/top100*"
       ],
       "js": [ "content.js" ]
     }
