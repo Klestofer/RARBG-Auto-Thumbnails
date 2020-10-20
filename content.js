@@ -1,38 +1,100 @@
 'use strict';
 
-// disable default thumbnail popup
-const script = document.createElement('script');
-script.innerHTML = `
-  document.onmousemove = null;
+chrome.storage.sync.get('options', function({options}) {
+  l('storage.get()', options);
 
-  function overlib() {
-    // nothing
+  if (options.isFocusSearchField) {
+    const searchInput = document.querySelector('#searchinput');
+    if (searchInput !== null) {
+      searchInput.focus();
+      searchInput.select();
+    }
   }
-`;
-document.head.appendChild(script);
-script.remove();
 
-// create thumbnails near links
-for (const link of document.querySelectorAll('.lista2t a[onmouseover], .lista_related a[onmouseover]')) {
-  const cell = link.parentElement;
-//  cell.style.display = 'flex';
-//  cell.style.alignItems = 'center';
+  if (options.isShowThumbnails) {
+    showThumbnails();
+  }
 
-  // move original cell content to DIV
-  const contentDiv = document.createElement('div');
-  contentDiv.style.display = 'inline-block';
-  contentDiv.style.verticalAlign = 'middle';
-  contentDiv.append(...cell.children);
-  cell.append(contentDiv);
+  if (options.isShowMediaInfo) {
+    showBlock('#showmediainfo', '#mediainfo', options.maxBlockHeight);
+  }
 
-  // create link with thumbnail
-  const imageLink = document.createElement('a');
-  imageLink.href = link.getAttribute('href');
+  if (options.isShowFiles) {
+    const isBlockShown = showBlock('#showhidefiles', '#files', options.maxBlockHeight);
+    if (isBlockShown) {
+      // keep number of files
+      document.querySelector('#msgfile').style.display = '';
+    }
+  }
 
-  const image = document.createElement('img');
-  image.style.verticalAlign = 'middle';
-  image.src = link.getAttribute('onmouseover').match(/\\'(.+)\\'/)[1];
+  if (options.isShowNFO) {
+    showBlock('#shownfo', '#populateNFO', options.maxBlockHeight);
+  }
+});
 
-  imageLink.append(image);
-  contentDiv.before(imageLink);
+
+
+
+function showThumbnails() {
+  // disable default thumbnail popup
+  const script = document.createElement('script');
+  script.innerHTML = `
+    document.onmousemove = null;
+
+    function overlib() {
+      // nothing
+    }
+
+    function nd() {
+      // nothing
+    }
+  `;
+  document.head.appendChild(script);
+  script.remove();
+
+  // create thumbnails near links
+  for (const link of document.querySelectorAll('.lista2t a[onmouseover], .lista_related a[onmouseover]')) {
+    const cell = link.parentElement;
+    link.removeAttribute('title');
+
+    // create link with thumbnail
+    const thumbnailLink = document.createElement('a');
+    thumbnailLink.href = link.getAttribute('href');
+
+    // create thumbnail
+    const thumbnail = document.createElement('img');
+    thumbnail.src = link.getAttribute('onmouseover').match(/\\'(.+)\\'/)[1];
+    thumbnailLink.append(thumbnail);
+
+    // move original cell content to DIV
+    const originalContentDiv = document.createElement('div');
+    originalContentDiv.append(...cell.children);
+
+    // create DIV for entire cell
+    const cellDiv = document.createElement('div');
+    cellDiv.style.display = 'flex';
+    cellDiv.style.alignItems = 'center';
+    cellDiv.append(thumbnailLink, originalContentDiv);
+
+    cell.append(cellDiv);
+  }
+}
+
+
+
+
+function showBlock(toggleElemSelector, blockElemSelector, maxHeight) {
+  const toggleElem = document.querySelector(toggleElemSelector);
+  if (toggleElem === null) {
+    return false;
+  }
+  toggleElem.click();
+
+  if (maxHeight !== undefined) {
+    const block = document.querySelector(blockElemSelector);
+    block.style.maxHeight = maxHeight + 'px';
+    block.style.overflowY = 'auto';
+  }
+
+  return true;
 }

@@ -3,8 +3,19 @@
 [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/rarbg-auto-thumbnails/)
 
 
-27.06.2019 v0.1.1
+2019-06-07
+first version
+
+2019-06-27
 rarbgmirror.xyz changed to rarbgmirror.org
 
-09.01.2020 v0.2.0
+2020-01-09
 added rarbgaccessed.org
+
+2020-10-19
+new features:
+automatically focus search field,
+automatically show 'media info', 'files' and NFO blocks.
+
+added several RARBG sites.
+

@@ -1,48 +1,110 @@
 {
   "author": "Dima PM",
   "manifest_version": 2,
-  "name": "RARBG Auto Thumbnails",
-  "version": "0.2.0",
-  "description": "Shows torrent thumbnails automatically.",
+  "name": "RARBG Tweaks",
+  "version": "0.3.0",
+  "description": "Provides some tweaks for RARBG sites.",
+
+  "background": {
+    "scripts": ["console.js", "default options.js", "background.js"],
+    "persistent": false
+  },
 
   "content_scripts": [
     {
-      "matches": [ "https://rarbgmirror.org/torrents.php*",
-                   "https://rarbgmirror.org/torrent/*",
-                   "https://rarbgmirror.org/torrents?category=*",
-                   "https://rarbgmirror.org/s/*/",
-                   "https://rarbgmirror.org/top10",
-                   "https://rarbgmirror.org/top100*",
+      "matches": [
+        "*://rarbgmirror.org/torrents.php*",
+        "*://rarbgmirror.org/torrent/*",
+        "*://rarbgmirror.org/torrents?category=*",
+        "*://rarbgmirror.org/s/*/",
+        "*://rarbgmirror.org/top10",
+        "*://rarbgmirror.org/top100*",
 
-                   "https://rarbgproxy.org/torrents.php*",
-                   "https://rarbgproxy.org/torrent/*",
-                   "https://rarbgproxy.org/torrents?category=*",
-                   "https://rarbgproxy.org/s/*/",
-                   "https://rarbgproxy.org/top10",
-                   "https://rarbgproxy.org/top100*",
+        "*://rarbgproxy.org/torrents.php*",
+        "*://rarbgproxy.org/torrent/*",
+        "*://rarbgproxy.org/torrents?category=*",
+        "*://rarbgproxy.org/s/*/",
+        "*://rarbgproxy.org/top10",
+        "*://rarbgproxy.org/top100*",
 
-                   "https://rarbgprx.org/torrents.php*",
-                   "https://rarbgprx.org/torrent/*",
-                   "https://rarbgprx.org/torrents?category=*",
-                   "https://rarbgprx.org/s/*/",
-                   "https://rarbgprx.org/top10",
-                   "https://rarbgprx.org/top100*",
+        "*://rarbgprx.org/torrents.php*",
+        "*://rarbgprx.org/torrent/*",
+        "*://rarbgprx.org/torrents?category=*",
+        "*://rarbgprx.org/s/*/",
+        "*://rarbgprx.org/top10",
+        "*://rarbgprx.org/top100*",
 
-                   "https://rarbgunblocked.org/torrents.php*",
-                   "https://rarbgunblocked.org/torrent/*",
-                   "https://rarbgunblocked.org/torrents?category=*",
-                   "https://rarbgunblocked.org/s/*/",
-                   "https://rarbgunblocked.org/top10",
-                   "https://rarbgunblocked.org/top100*",
+        "*://rarbgunblocked.org/torrents.php*",
+        "*://rarbgunblocked.org/torrent/*",
+        "*://rarbgunblocked.org/torrents?category=*",
+        "*://rarbgunblocked.org/s/*/",
+        "*://rarbgunblocked.org/top10",
+        "*://rarbgunblocked.org/top100*",
 
-                   "https://rarbgaccessed.org/torrents.php*",
-                   "https://rarbgaccessed.org/torrent/*",
-                   "https://rarbgaccessed.org/torrents?category=*",
-                   "https://rarbgaccessed.org/s/*/",
-                   "https://rarbgaccessed.org/top10",
-                   "https://rarbgaccessed.org/top100*"
+        "*://rarbgaccessed.org/torrents.php*",
+        "*://rarbgaccessed.org/torrent/*",
+        "*://rarbgaccessed.org/torrents?category=*",
+        "*://rarbgaccessed.org/s/*/",
+        "*://rarbgaccessed.org/top10",
+        "*://rarbgaccessed.org/top100*",
+
+        "*://rarbgaccess.org/torrents.php*",
+        "*://rarbgaccess.org/torrent/*",
+        "*://rarbgaccess.org/torrents?category=*",
+        "*://rarbgaccess.org/s/*/",
+        "*://rarbgaccess.org/top10",
+        "*://rarbgaccess.org/top100*",
+
+        "*://rarbgget.org/torrents.php*",
+        "*://rarbgget.org/torrent/*",
+        "*://rarbgget.org/torrents?category=*",
+        "*://rarbgget.org/s/*/",
+        "*://rarbgget.org/top10",
+        "*://rarbgget.org/top100*",
+
+        "*://rarbggo.org/torrents.php*",
+        "*://rarbggo.org/torrent/*",
+        "*://rarbggo.org/torrents?category=*",
+        "*://rarbggo.org/s/*/",
+        "*://rarbggo.org/top10",
+        "*://rarbggo.org/top100*",
+
+        "*://rarbgenter.org/torrents.php*",
+        "*://rarbgenter.org/torrent/*",
+        "*://rarbgenter.org/torrents?category=*",
+        "*://rarbgenter.org/s/*/",
+        "*://rarbgenter.org/top10",
+        "*://rarbgenter.org/top100*",
+
+        "*://rarbgtor.org/torrents.php*",
+        "*://rarbgtor.org/torrent/*",
+        "*://rarbgtor.org/torrents?category=*",
+        "*://rarbgtor.org/s/*/",
+        "*://rarbgtor.org/top10",
+        "*://rarbgtor.org/top100*",
+
+        "*://proxyrarbg.org/torrents.php*",
+        "*://proxyrarbg.org/torrent/*",
+        "*://proxyrarbg.org/torrents?category=*",
+        "*://proxyrarbg.org/s/*/",
+        "*://proxyrarbg.org/top10",
+        "*://proxyrarbg.org/top100*",
+
+        "*://rarbgproxied.org/torrents.php*",
+        "*://rarbgproxied.org/torrent/*",
+        "*://rarbgproxied.org/torrents?category=*",
+        "*://rarbgproxied.org/s/*/",
+        "*://rarbgproxied.org/top10",
+        "*://rarbgproxied.org/top100*"
       ],
-      "js": [ "content.js" ]
+      "js": ["console.js", "content.js"]
     }
-  ]
+  ],
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "permissions": ["storage"]
 }
