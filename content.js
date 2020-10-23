@@ -88,6 +88,7 @@ function showBlock(toggleElemSelector, blockElemSelector, maxHeight) {
   if (toggleElem === null) {
     return false;
   }
+  toggleElem.parentElement.removeAttribute('href'); // prevent changing of URL hash by following click
   toggleElem.click();
 
   if (maxHeight !== undefined) {

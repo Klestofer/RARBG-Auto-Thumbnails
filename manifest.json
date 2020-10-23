@@ -2,7 +2,7 @@
   "author": "Dima PM",
   "manifest_version": 2,
   "name": "RARBG Tweaks",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Provides some tweaks for RARBG sites.",
 
   "background": {
