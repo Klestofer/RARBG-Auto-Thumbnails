@@ -1,7 +1,12 @@
 'use strict';
 
-chrome.storage.sync.get('options', function({options}) {
-  l('storage.get()', options);
+let options;
+
+
+chrome.storage.sync.get('options', function(items) {
+  l('storage.get()', items);
+
+  options = items.options;
 
   if (options.isFocusSearchField) {
     const searchInput = document.querySelector('#searchinput');
@@ -16,11 +21,11 @@ chrome.storage.sync.get('options', function({options}) {
   }
 
   if (options.isShowMediaInfo) {
-    showBlock('#showmediainfo', '#mediainfo', options.maxBlockHeight);
+    showBlock('#showmediainfo', '#mediainfo');
   }
 
   if (options.isShowFiles) {
-    const isBlockShown = showBlock('#showhidefiles', '#files', options.maxBlockHeight);
+    const isBlockShown = showBlock('#showhidefiles', '#files');
     if (isBlockShown) {
       // keep number of files
       document.querySelector('#msgfile').style.display = '';
@@ -28,7 +33,12 @@ chrome.storage.sync.get('options', function({options}) {
   }
 
   if (options.isShowNFO) {
-    showBlock('#shownfo', '#populateNFO', options.maxBlockHeight);
+    showBlock('#shownfo', '#populateNFO');
+  }
+
+  if (options.isMarkLinks) {
+    markLinksInDescription();
+    markLinksInNFO();
   }
 });
 
@@ -83,19 +93,93 @@ function showThumbnails() {
 
 
 
-function showBlock(toggleElemSelector, blockElemSelector, maxHeight) {
+function showBlock(toggleElemSelector, blockElemSelector) {
   const toggleElem = document.querySelector(toggleElemSelector);
   if (toggleElem === null) {
     return false;
   }
-  toggleElem.parentElement.removeAttribute('href'); // prevent changing of URL hash by following click
+  toggleElem.parentElement.removeAttribute('href'); // prevent changing of URL hash by click() in next line
   toggleElem.click();
 
-  if (maxHeight !== undefined) {
+  if (options.maxBlockHeight !== undefined) {
     const block = document.querySelector(blockElemSelector);
-    block.style.maxHeight = maxHeight + 'px';
+    block.style.maxHeight = options.maxBlockHeight + 'px';
     block.style.overflowY = 'auto';
   }
 
   return true;
+}
+
+
+
+
+function markLinksInDescription() {
+  const descriptionBlock = document.querySelector('#description');
+  if (descriptionBlock === null) {
+    return;
+  }
+
+  const urlRegExp = /(.+)(https?:\/\/.+)/s; // some text before link text
+
+  for (const node of descriptionBlock.childNodes) {
+    n(); l(node);
+
+    if (node.nodeType !== Node.TEXT_NODE) {
+      // not a text node
+      continue;
+    }
+
+    const match = node.textContent.match(urlRegExp);
+    l(match);
+
+    if (match?.length !== 3) {
+      // no link
+      continue;
+    }
+
+    l('match');
+
+    // keep only text before link
+    node.textContent = match[1];
+
+    // create real link from link text
+    const linkElem = document.createElement('a');
+    linkElem.href = linkElem.textContent = match[2];
+    linkElem.target = '_blank';
+    linkElem.rel = 'noreferrer';
+    node.after(linkElem);
+
+    // we will encounter linkElem on next iteration, but this is not a big problem
+  }
+}
+
+
+
+
+function markLinksInNFO() {
+  const nfoBlock = document.querySelector('#populateNFO');
+  if (nfoBlock === null) {
+    return;
+  }
+
+  const urlRegExp = /https?:\/\/[^ ,\n]+/g; // not ideal
+
+  // wait for <pre> element of NFO block
+  new MutationObserver(function(mutationRecords) {
+    n(); l('observer fired', mutationRecords);
+
+    if (mutationRecords.length !== 1) {
+      // skip adding 'loading' image
+      return;
+    }
+
+    const preElem = mutationRecords[0].addedNodes[0]; // or nfoBlock.firstElementChild
+
+    if (!urlRegExp.test(preElem.textContent)) {
+      // no text links
+      return;
+    }
+
+    preElem.innerHTML = preElem.innerHTML.replace(urlRegExp, '<a href="$&" target="_blank" rel="noreferrer">$&</a>');
+  }).observe(nfoBlock, {childList: true});
 }

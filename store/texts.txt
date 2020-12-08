@@ -1,0 +1,21 @@
+Single purpose:
+Provides some tweaks for RARBG sites.
+
+
+
+
+Description:
+Extension allows to adjust appearance of RARBG sites, for example:
+-automatically focus search input,
+-automatically show torrent thumbnails,
+-automatically show Media Info, Files and NFO blocks on torrent page,
+-automatically mark links in Description and NFO blocks.
+
+Supports many RARBG mirrors.
+
+
+
+
+Permission justification:
+Extension stores user options in storage.
+Host permissions are required for script injection.

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Options</title>
     <script defer src="console.js"></script>
     <script defer src="options.js"></script>
     <style>
@@ -9,8 +10,8 @@
         margin-bottom: 2px;
       }
 
-      .group {
-        margin-bottom: 10px;
+      .group:not(:first-child) {
+        margin-top: 10px;
       }
 
       span {
@@ -27,36 +28,62 @@
         top: 3px;
         left: -4px;
       }
+
+      p {
+        margin-top: 30px;
+      }
     </style>
   </head>
   <body>
     <form>
-      <label class="group">
-        <span>Focus search field:</span>
-        <input type="checkbox" id="isFocusSearchField">
-      </label>
-      <label class="group">
-        <span>Show thumbnails:</span>
-        <input type="checkbox" id="isShowThumbnails">
-      </label>
-      <label>
-        <span>Show media info:</span>
-        <input type="checkbox" id="isShowMediaInfo">
-      </label>
-      <label>
-        <span>Show files:</span>
-        <input type="checkbox" id="isShowFiles">
-      </label>
-      <label>
-        <span>Show NFO:</span>
-        <input type="checkbox" id="isShowNFO">
-      </label>
-      <label>
-        <span>Max block height:</span>
-        <input type="number" id="maxBlockHeight" min="0">
-      </label>
+      <div class="group">
+        <label>
+          <span>Focus search field:</span>
+          <input type="checkbox" id="isFocusSearchField">
+        </label>
+      </div>
+
+      <div class="group">
+        <label>
+          <span>Show thumbnails:</span>
+          <input type="checkbox" id="isShowThumbnails">
+        </label>
+      </div>
+
+      <div class="group">
+        <label>
+          <span>Show MediaInfo:</span>
+          <input type="checkbox" id="isShowMediaInfo">
+        </label>
+        <label>
+          <span>Show Files:</span>
+          <input type="checkbox" id="isShowFiles">
+        </label>
+        <label>
+          <span>Show NFO:</span>
+          <input type="checkbox" id="isShowNFO">
+        </label>
+        <label>
+          <span>Max block height:</span>
+          <input type="number" id="maxBlockHeight" min="0">
+        </label>
+      </div>
+
+      <div class="group">
+        <label class="new-group">
+          <span>Mark links:</span>
+          <input type="checkbox" id="isMarkLinks">
+        </label>
+      </div>
+
       <hr>
       <input type="submit" value="Save">
     </form>
+
+    <p>
+      Extension does not have advertisements, telemetry, analytics and other unpleasant things. It does not collect user data.
+      <br>
+      Everyone can use it for free. And everyone can <a href="https://paypal.me/klestofer" target="_blank">donate using PayPal</a> to support its development.
+    </p>
   </body>
 </html>

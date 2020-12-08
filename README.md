@@ -18,4 +18,11 @@ new features:
 added several RARBG sites.
 
 2020-10-23\
-fixed changing of URL hash when showing block
+fixed changing of URL hash when showing blocks
+
+2020-12-08\
+new features:
+- mark links,
+- donations.
+
+Added some mirrors.
